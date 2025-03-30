@@ -26,7 +26,7 @@ public class Gamepanel extends JPanel implements Runnable {
     //player's initial position
     int playerX=100;
     int playerY=100;
-    int playerspeed=2;
+    int playerspeed=1;
 
      public Gamepanel(){
          this.setPreferredSize(new Dimension(screenwidth,screenheight));
