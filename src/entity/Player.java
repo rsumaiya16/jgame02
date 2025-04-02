@@ -23,7 +23,7 @@ public class Player extends Entity {
       public void setDefaultValues(){
           x=100;
           y=100;
-          speed=2;
+          speed=1;
           direction="down";
       }
       public void getPlayerImage(){
