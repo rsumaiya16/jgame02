@@ -11,8 +11,8 @@ import java.io.InputStreamReader;
 
 public class Tilemanager {
     Gamepanel gp;
-    Tile[] tile;
-    int maptilenum[][];
+    public Tile[] tile;
+    public int[][] maptilenum;
 
     public Tilemanager(Gamepanel gp){
 
@@ -28,14 +28,22 @@ public class Tilemanager {
         try{
             tile[0]=new Tile();
             tile[0].image= ImageIO.read(getClass().getResourceAsStream("/tiles/grass.jpg"));
+
             tile[1]=new Tile();
             tile[1].image= ImageIO.read(getClass().getResourceAsStream("/tiles/stone.png"));
+            tile[1].collison=true;
+
             tile[2]=new Tile();
             tile[2].image= ImageIO.read(getClass().getResourceAsStream("/tiles/water.jpg"));
+            tile[2].collison=true;
+
             tile[3]=new Tile();
             tile[3].image= ImageIO.read(getClass().getResourceAsStream("/tiles/earth.jpeg"));
+
             tile[4]=new Tile();
             tile[4].image= ImageIO.read(getClass().getResourceAsStream("/tiles/tree.png"));
+            tile[4].collison=true;
+
             tile[5]=new Tile();
             tile[5].image= ImageIO.read(getClass().getResourceAsStream("/tiles/sand.png"));
 
@@ -93,8 +101,14 @@ public class Tilemanager {
            int screeny=worldy-gp.player.worldy+gp.player.screeny;
 
 
-
+       if(worldx +gp.tilesize>gp.player.worldx-gp.player.screenx &&
+       worldx-gp.tilesize<gp.player.worldx+gp.player.screenx &&
+       worldy+gp.tilesize>gp.player.worldy-gp.player.screeny &&
+       worldy-gp.tilesize<gp.player.worldy+gp.player.screeny)
+       {
            g2.drawImage(tile[tilenum].image, screenx, screeny, gp.tilesize, gp.tilesize, null);
+       }
+
 
            worldcol++;
 

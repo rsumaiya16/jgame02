@@ -15,12 +15,21 @@ public class Player extends Entity {
     public final int screenx;
     public final int screeny;
 
+    int counter2=0;
+
       public Player(Gamepanel gp,Keyhandler keyH){
           this.gp=gp;
           this.keyH=keyH;
 
           screenx=gp.screenwidth/2-(gp.tilesize/2);
           screeny=gp.screenheight/2-(gp.tilesize/2);
+
+          solidarea=new Rectangle();
+          solidarea.x=8;
+          solidarea.y=8;
+          solidarea.width=32;
+          solidarea.height=32;
+
 
           setDefaultValues();
           getPlayerImage();
@@ -52,25 +61,52 @@ public class Player extends Entity {
           }
       }
       public void update(){
-          if(keyH.upPressed==true){
-              direction="up";
-              worldy-=speed;
+          if(keyH.upPressed==true || keyH.downPressed==true || keyH.leftPressed==true || keyH.rightPressed==true ) {
+              if (keyH.upPressed == true) {
+                  direction = "up";
 
 
-          }
-          else if(keyH.downPressed==true){
-              worldy+=speed;
-              direction="down";
+              } else if (keyH.downPressed == true) {
+
+                  direction = "down";
 
 
-          }
-          else if(keyH.leftPressed==true){
-              worldx-=speed;
-              direction="left";
-          }
-          else if(keyH.rightPressed==true){
-              worldx+=speed;
-              direction="right";
+              } else if (keyH.leftPressed == true) {
+
+                  direction = "left";
+              } else if (keyH.rightPressed == true) {
+
+                  direction = "right";
+              }
+
+              //check collision
+              collisonon=false;
+              gp.cchecker.checktile(this);
+
+              if(collisonon==false){
+                  switch (direction){
+                      case "up":  worldy -= speed;
+                          break;
+                      case "down": worldy += speed;
+                          break;
+                      case "left":   worldx -= speed;
+                          break;
+                      case "right": worldx += speed;
+                          break;
+
+
+                  }
+              }
+              spritecounter++;
+              if(spritecounter>12){
+                  if(spritecounter==1){
+                      spritenum=2;
+                  }
+                  else if(spritecounter==2){
+                      spritenum=1;
+                  }
+                  spritecounter=0;
+              }
           }
       }
       public void draw(Graphics2D g2){
