@@ -68,5 +68,76 @@ public void checktile(Entity entity){
 
 
 }
+    public int checkobject(Entity entity, boolean player) {
+        int index = 999;
+        for (int i = 0; i < gp.obj.length; i++) {
+            if (gp.obj[i] != null) {
+                // Update entity's solid area position
+                entity.solidarea.x = entity.worldx + entity.solidarea.x;
+                entity.solidarea.y = entity.worldy + entity.solidarea.y;
 
+                // Update object solid area position
+                gp.obj[i].solidarea.x = gp.obj[i].worldx + gp.obj[i].solidarea.x;
+                gp.obj[i].solidarea.y = gp.obj[i].worldy + gp.obj[i].solidarea.y;
+
+                switch (entity.direction) {
+                    case "up":
+                        entity.solidarea.y -= entity.speed;
+                        if (entity.solidarea.intersects(gp.obj[i].solidarea)) {
+                            if (gp.obj[i].collision) {
+                                entity.collisonon = true;
+                            }
+                            if (player) {
+                                index = i;
+                            }
+                        }
+                        break;
+
+                    case "down":
+                        entity.solidarea.y += entity.speed;
+                        if (entity.solidarea.intersects(gp.obj[i].solidarea)) {
+                            if (gp.obj[i].collision) {
+                                entity.collisonon = true;
+                            }
+                            if (player) {
+                                index = i;
+                            }
+                        }
+                        break;
+
+                    case "left":
+                        entity.solidarea.x -= entity.speed;
+                        if (entity.solidarea.intersects(gp.obj[i].solidarea)) {
+                            if (gp.obj[i].collision) {
+                                entity.collisonon = true;
+                            }
+                            if (player) {
+                                index = i;
+                            }
+                        }
+                        break;
+
+                    case "right":
+                        entity.solidarea.x += entity.speed;
+                        if (entity.solidarea.intersects(gp.obj[i].solidarea)) {
+                            if (gp.obj[i].collision) {
+                                entity.collisonon = true;
+                            }
+                            if (player) {
+                                index = i;
+                            }
+                        }
+                        break;
+                }
+
+                // Reset to default solid area values
+                entity.solidarea.x = entity.solidareadefaultx;
+                entity.solidarea.y = entity.solidareadefaulty;
+                gp.obj[i].solidarea.x = gp.obj[i].solidareadefaultx;
+                gp.obj[i].solidarea.y = gp.obj[i].solidareadefaulty;
+            }
+        }
+
+        return index;
+    }
 }

@@ -14,6 +14,7 @@ public class Player extends Entity {
 
     public final int screenx;
     public final int screeny;
+    int haskey=0;
 
     int counter2=0;
 
@@ -26,7 +27,9 @@ public class Player extends Entity {
 
           solidarea=new Rectangle();
           solidarea.x=8;
-          solidarea.y=8;
+          solidarea.y=16;
+          solidareadefaultx=solidarea.x;
+          solidareadefaulty=solidarea.y;
           solidarea.width=32;
           solidarea.height=32;
 
@@ -79,9 +82,13 @@ public class Player extends Entity {
                   direction = "right";
               }
 
-              //check collision
+              //check tile collision
               collisonon=false;
               gp.cchecker.checktile(this);
+
+              //check object collisopn
+             int objindex= gp.cchecker.checkobject(this,true);
+             pickupobj(objindex);
 
               if(collisonon==false){
                   switch (direction){
@@ -107,6 +114,28 @@ public class Player extends Entity {
                   }
                   spritecounter=0;
               }
+          }
+      }
+      public void pickupobj(int i) {
+          if (i != 999) {
+              String objectName = gp.obj[i].name;
+
+              switch (objectName) {
+                  case "key":
+                      haskey++;
+                      gp.obj[i] = null;
+                      System.out.println("key"+haskey);
+                      break;
+                  case "door":
+                      if (haskey > 0) {
+                          gp.obj[i] = null;
+                          haskey--;
+                      }
+                      break;
+
+
+              }
+
           }
       }
       public void draw(Graphics2D g2){
