@@ -33,6 +33,7 @@ public class Gamepanel extends JPanel implements Runnable {
     Thread gameThread;
     public Collisioncheck cchecker= new Collisioncheck(this);
     public AssetSetter asetter= new AssetSetter(this);
+    public Ui ui=new Ui(this);
     public Player player=new Player(this,keyH);
     public Superobject obj[]=new Superobject[10];
 
@@ -54,43 +55,73 @@ public class Gamepanel extends JPanel implements Runnable {
        }
 
     @Override
-    public void run() {
+//    public void run() {
+//
+//         double drawinterval=100000000/fps; //0.01666 sec
+//        double nextdrawtime=System.nanoTime()+drawinterval;
+//
+//
+//
+//         while(gameThread != null){
+//
+//
+//             update();
+//
+//             repaint();
+//
+//
+//
+//             try {
+//                 double remainingtime=nextdrawtime-System.nanoTime();
+//                 remainingtime=remainingtime/100000;
+//
+//                 if(remainingtime<0){
+//                     remainingtime=0;
+//                 }
+//                 Thread.sleep((long)remainingtime);
+//
+//                 nextdrawtime+=drawinterval;
+//             } catch (InterruptedException e) {
+//              e.printStackTrace();
+//             }
+//
+//
+//         }
+//
+//
+//
+//
+//
+//    }
+    public void run(){
+        double drawinterval=100000000/fps;
+        double delta=0;
+        long lasttime=System.nanoTime();
+       long currenttime;
+       long timer=0;
+       long drawcount=0;
 
-         double drawinterval=100000000/fps; //0.01666 sec
-        double nextdrawtime=System.nanoTime()+drawinterval;
+        while(gameThread!=null){
+            currenttime=System.nanoTime();
 
+            delta+=(currenttime-lasttime)/drawinterval;
+            timer+=(currenttime-lasttime);
+            lasttime=currenttime;
 
+            if(delta>1){
+            update();
+            repaint();
+            delta--;
+            drawcount++;
 
-         while(gameThread != null){
-
-
-             update();
-
-             repaint();
-
-
-
-             try {
-                 double remainingtime=nextdrawtime-System.nanoTime();
-                 remainingtime=remainingtime/100000;
-
-                 if(remainingtime<0){
-                     remainingtime=0;
-                 }
-                 Thread.sleep((long)remainingtime);
-
-                 nextdrawtime+=drawinterval;
-             } catch (InterruptedException e) {
-              e.printStackTrace();
-             }
-
+            }
+            if(timer>100000000){
+                System.out.println("fps"+drawcount);
+                drawcount=0;
+                timer=0;
+            }
 
          }
-
-
-
-
-
     }
     public void update(){
          player.update();
@@ -113,6 +144,8 @@ public class Gamepanel extends JPanel implements Runnable {
         }
 
         player.draw(g2);
+
+        Ui.draw(g2);
          g2.dispose();
 
 

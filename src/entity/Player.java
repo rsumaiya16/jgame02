@@ -14,7 +14,7 @@ public class Player extends Entity {
 
     public final int screenx;
     public final int screeny;
-    int haskey=0;
+    public int haskey=0;
 
     int counter2=0;
 
@@ -64,7 +64,8 @@ public class Player extends Entity {
           }
       }
       public void update(){
-          if(keyH.upPressed==true || keyH.downPressed==true || keyH.leftPressed==true || keyH.rightPressed==true ) {
+          if(keyH.upPressed==true || keyH.downPressed==true ||
+                  keyH.leftPressed==true || keyH.rightPressed==true ) {
               if (keyH.upPressed == true) {
                   direction = "up";
 
@@ -100,21 +101,21 @@ public class Player extends Entity {
                           break;
                       case "right": worldx += speed;
                           break;
-
-
                   }
               }
               spritecounter++;
-              if(spritecounter>12){
-                  if(spritecounter==1){
-                      spritenum=2;
+              if (spritecounter > 12) {
+                  if (spritenum == 1) {
+                      spritenum = 2;
+                  } else if (spritenum == 2) {
+                      spritenum = 1;
                   }
-                  else if(spritecounter==2){
-                      spritenum=1;
-                  }
-                  spritecounter=0;
+                  spritecounter = 0;
               }
+
+
           }
+
       }
       public void pickupobj(int i) {
           if (i != 999) {
@@ -124,14 +125,30 @@ public class Player extends Entity {
                   case "key":
                       haskey++;
                       gp.obj[i] = null;
-                      System.out.println("key"+haskey);
+                      gp.ui.showmessage("you got a key!!");
                       break;
                   case "door":
                       if (haskey > 0) {
                           gp.obj[i] = null;
                           haskey--;
+                          gp.ui.showmessage("You opened the door!");
+                      }
+                      else{
+                          gp.ui.showmessage("You need a key");
                       }
                       break;
+                  case "boost":
+                       speed+=1;
+                      gp.obj[i]=null;
+                      gp.ui.showmessage("Speed up!!");
+
+                      break;
+                  case "chest":
+                     gp.ui.gamekhatam=true;
+
+                      break;
+
+
 
 
               }
@@ -142,17 +159,38 @@ public class Player extends Entity {
 
           BufferedImage image=null;
           switch (direction){
+
               case "up":
-                  image=up1;
+                  if(spritenum==1) {
+                      image = up1;
+                  }
+                  if(spritenum==2){
+                      image=up2;
+                  }
                   break;
               case "down":
-                  image=down1;
+                  if(spritenum==1) {
+                      image = down2;
+                  }
+                  if(spritenum==2){
+                      image=down1;
+                  }
                   break;
               case "left":
-                  image=left1;
+                  if(spritenum==1) {
+                      image = left1;
+                  }
+                  if(spritenum==2){
+                      image=left2;
+                  }
                   break;
               case "right":
-                  image=right1;
+                  if(spritenum==1) {
+                      image = right1;
+                  }
+                  if(spritenum==2){
+                      image=right2;
+                  }
                   break;
 
 
