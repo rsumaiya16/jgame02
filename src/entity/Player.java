@@ -15,6 +15,7 @@ public class Player extends Entity {
     public final int screenx;
     public final int screeny;
     public int haskey=0;
+    public int hasdagger=0;
 
     int counter2=0;
 
@@ -150,7 +151,8 @@ public class Player extends Entity {
 
                   case "dagger":
                       gp.obj[i]=null;
-                      gp.ui.showmessage("You got s dagger");
+                      hasdagger++;
+                      gp.ui.showmessage("You got a dagger");
                       break;
 
 

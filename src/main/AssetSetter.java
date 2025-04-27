@@ -26,11 +26,11 @@ public class AssetSetter {
 
         gp.obj[4]=new Objdoor();
         gp.obj[4].worldx=8* gp.tilesize;
-        gp.obj[4].worldy=20*gp.tilesize;
+        gp.obj[4].worldy=25*gp.tilesize;
 
         gp.obj[5]=new Objdoor();
-        gp.obj[5].worldx=12* gp.tilesize;
-        gp.obj[5].worldy=22*gp.tilesize;
+        gp.obj[5].worldx=13* gp.tilesize;
+        gp.obj[5].worldy=24*gp.tilesize;
 
         gp.obj[5]=new Objchest();
         gp.obj[5].worldx=10* gp.tilesize;
@@ -47,6 +47,12 @@ public class AssetSetter {
         gp.obj[8]=new Objdagger();
         gp.obj[8].worldx=30* gp.tilesize;
         gp.obj[8].worldy=40*gp.tilesize;
+
+        gp.obj[9]=new Objdagger();
+        gp.obj[9].worldx=50* gp.tilesize;
+        gp.obj[9].worldy=10*gp.tilesize;
+
+
 
 
 

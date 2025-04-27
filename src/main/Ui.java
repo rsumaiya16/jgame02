@@ -1,5 +1,6 @@
 package main;
 
+import object.Objdagger;
 import object.Objkey;
 
 import java.awt.*;
@@ -11,6 +12,7 @@ public class Ui {
     static Gamepanel gp;
     static Font arial_40,arial_80B;
     static BufferedImage Keyimage;
+    static BufferedImage daggerimage;
     public static boolean messageon=false;
     public static String message=" ";
     static int msgcounter=0;
@@ -24,6 +26,8 @@ public class Ui {
         arial_80B=new Font("Arial",Font.BOLD,80);
             Objkey key=new Objkey();
             Keyimage=key.image;
+        Objdagger dagger=new Objdagger();
+        daggerimage=dagger.image;
 
     }
     public void showmessage(String text ){
@@ -36,12 +40,15 @@ public class Ui {
             int textlen;
             int x;
             int y;
+            int daggerX;
 
 
             text="You found the treasure";
             textlen=(int)g2.getFontMetrics().getStringBounds(text,g2).getWidth();
             x=gp.screenwidth/2-textlen/2;
-             y=gp.screenheight/2-(gp.tilesize*3);
+            daggerX = gp.screenwidth / 2 - textlen / 2 + 20;
+
+            y=gp.screenheight/2-(gp.tilesize*3);
             g2.drawString(text,x,y);
 
             text="Your time is"+dformat.format(playtime)+"!";
@@ -67,6 +74,11 @@ public class Ui {
             g2.setColor(Color.white);
             g2.drawImage(Keyimage,gp.tilesize/2,gp.tilesize/2,gp.tilesize,gp.tilesize,null);
             g2.drawString("x "+gp.player.haskey,74,65);
+
+            g2.setFont(arial_40);
+            g2.setColor(Color.white);
+            g2.drawImage(daggerimage,gp.tilesize/2,gp.tilesize/2+40,gp.tilesize,gp.tilesize,null);
+            g2.drawString("x "+gp.player.hasdagger,74,100);
 
             //time
             playtime+=(double)1/60;
