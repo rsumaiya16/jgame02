@@ -1,9 +1,6 @@
 package main;
 
-import object.Objboost;
-import object.Objchest;
-import object.Objdoor;
-import object.Objkey;
+import object.*;
 
 public class AssetSetter {
     Gamepanel gp;
@@ -46,6 +43,14 @@ public class AssetSetter {
         gp.obj[7]=new Objboost();
         gp.obj[7].worldx=37* gp.tilesize;
         gp.obj[7].worldy=42*gp.tilesize;
+
+        gp.obj[8]=new Objdagger();
+        gp.obj[8].worldx=30* gp.tilesize;
+        gp.obj[8].worldy=40*gp.tilesize;
+
+
+
+
 
 
     }

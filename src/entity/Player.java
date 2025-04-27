@@ -138,15 +138,21 @@ public class Player extends Entity {
                       }
                       break;
                   case "boost":
-                       speed+=1;
+//                       speed+=1;
                       gp.obj[i]=null;
-                      gp.ui.showmessage("Speed up!!");
+                      gp.ui.showmessage("You have completed your daily quest!!");
 
                       break;
                   case "chest":
                      gp.ui.gamekhatam=true;
 
                       break;
+
+                  case "dagger":
+                      gp.obj[i]=null;
+                      gp.ui.showmessage("You got s dagger");
+                      break;
+
 
 
 
