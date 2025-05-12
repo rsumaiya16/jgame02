@@ -27,12 +27,12 @@ public class Player extends Entity {
           screeny=gp.screenheight/2-(gp.tilesize/2);
 
           solidarea=new Rectangle();
-          solidarea.x=14;
+          solidarea.x=4;
           solidarea.y=14;
           solidareadefaultx=solidarea.x;
           solidareadefaulty=solidarea.y;
-          solidarea.width=32;
-          solidarea.height=32;
+          solidarea.width=30;
+          solidarea.height=30;
 
 
           setDefaultValues();
@@ -64,7 +64,7 @@ public class Player extends Entity {
 
           }
       }
-      public void update(){
+      public void update(double delta){
           if(keyH.upPressed==true || keyH.downPressed==true ||
                   keyH.leftPressed==true || keyH.rightPressed==true ) {
               if (keyH.upPressed == true) {
@@ -93,6 +93,7 @@ public class Player extends Entity {
              pickupobj(objindex);
 
               if(collisonon==false){
+
                   switch (direction){
                       case "up":  worldy -= speed;
                           break;

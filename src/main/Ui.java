@@ -42,8 +42,10 @@ public class Ui {
             int y;
             int daggerX;
 
+            g2.setFont(arial_80B);
+            g2.setColor(Color.blue);
 
-            text="You found the treasure";
+            text="You found "+"/n"+" the treasure";
             textlen=(int)g2.getFontMetrics().getStringBounds(text,g2).getWidth();
             x=gp.screenwidth/2-textlen/2;
             daggerX = gp.screenwidth / 2 - textlen / 2 + 20;

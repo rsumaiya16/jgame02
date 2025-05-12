@@ -109,7 +109,7 @@ public class Gamepanel extends JPanel implements Runnable {
             lasttime=currenttime;
 
             if(delta>1){
-            update();
+            update(delta);
             repaint();
             delta--;
             drawcount++;
@@ -123,8 +123,8 @@ public class Gamepanel extends JPanel implements Runnable {
 
          }
     }
-    public void update(){
-         player.update();
+    public void update(double delta){
+         player.update(delta);
 
     }
     public void paintComponent(Graphics g){
