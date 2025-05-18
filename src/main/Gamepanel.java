@@ -31,6 +31,7 @@ public class Gamepanel extends JPanel implements Runnable {
     Tilemanager tilem= new Tilemanager(this);
     Keyhandler keyH=new Keyhandler();
     Thread gameThread;
+
     public Collisioncheck cchecker= new Collisioncheck(this);
     public AssetSetter asetter= new AssetSetter(this);
     public Ui ui=new Ui(this);
@@ -55,44 +56,7 @@ public class Gamepanel extends JPanel implements Runnable {
        }
 
     @Override
-//    public void run() {
-//
-//         double drawinterval=100000000/fps; //0.01666 sec
-//        double nextdrawtime=System.nanoTime()+drawinterval;
-//
-//
-//
-//         while(gameThread != null){
-//
-//
-//             update();
-//
-//             repaint();
-//
-//
-//
-//             try {
-//                 double remainingtime=nextdrawtime-System.nanoTime();
-//                 remainingtime=remainingtime/100000;
-//
-//                 if(remainingtime<0){
-//                     remainingtime=0;
-//                 }
-//                 Thread.sleep((long)remainingtime);
-//
-//                 nextdrawtime+=drawinterval;
-//             } catch (InterruptedException e) {
-//              e.printStackTrace();
-//             }
-//
-//
-//         }
-//
-//
-//
-//
-//
-//    }
+
     public void run(){
         double drawinterval=100000000/fps;
         double delta=0;

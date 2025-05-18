@@ -8,7 +8,7 @@ public class Main {
        JFrame window=new JFrame();
        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        window.setResizable(false);
-       window.setTitle("2d adventure game ");
+       window.setTitle("solo leveling 2D Adventure Game ");
 
        Gamepanel gamePanel=new Gamepanel();
        window.add(gamePanel);
