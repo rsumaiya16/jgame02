@@ -72,11 +72,11 @@ public void checktile(Entity entity){
         int index = 999;
         for (int i = 0; i < gp.obj.length; i++) {
             if (gp.obj[i] != null) {
-                // Update entity's solid area position
+                // update entity's solid area position
                 entity.solidarea.x = entity.worldx + entity.solidarea.x;
                 entity.solidarea.y = entity.worldy + entity.solidarea.y;
 
-                // Update object solid area position
+                // update object solid area position
                 gp.obj[i].solidarea.x = gp.obj[i].worldx + gp.obj[i].solidarea.x;
                 gp.obj[i].solidarea.y = gp.obj[i].worldy + gp.obj[i].solidarea.y;
 
@@ -130,7 +130,7 @@ public void checktile(Entity entity){
                         break;
                 }
 
-                // Reset to default solid area values
+                // reset to default solid area values
                 entity.solidarea.x = entity.solidareadefaultx;
                 entity.solidarea.y = entity.solidareadefaulty;
                 gp.obj[i].solidarea.x = gp.obj[i].solidareadefaultx;

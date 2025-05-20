@@ -15,10 +15,18 @@ public class Ui {
     static BufferedImage daggerimage;
     public static boolean messageon=false;
     public static String message=" ";
-    static int msgcounter=0;
+    private static int msgcounter=0;
     public static boolean gamekhatam=false;
     static double playtime;
     static DecimalFormat dformat=new DecimalFormat("0.00");
+
+    public void setMsgcounter(int msgcounter) {
+        this.msgcounter = msgcounter;
+    }
+
+    public  static int getMsgcounter() {
+        return msgcounter;
+    }
 
     public Ui(Gamepanel gp){
         this.gp=gp;
@@ -35,6 +43,9 @@ public class Ui {
         messageon=true;
     }
     public static void draw(Graphics2D g2){
+
+
+
         if(gamekhatam==true){
             String text;
             int textlen;
@@ -86,10 +97,11 @@ public class Ui {
             playtime+=(double)1/60;
             g2.drawString("Time : " + dformat.format(playtime),gp.tilesize*11,65);
 
+
             if(messageon==true){
                 g2.setFont(g2.getFont().deriveFont(30F));
                 g2.drawString(message,gp.tilesize/2,gp.tilesize*5);
-                msgcounter++;
+                int msgcounter=getMsgcounter();
                 if(msgcounter>500){
                     msgcounter=0;
                     messageon=false;
